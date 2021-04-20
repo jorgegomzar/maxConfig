@@ -48,7 +48,7 @@ echo ""
 echo ""
 
 echo "Instalando grub-customizer"
-sudo apt install build-essential cmake libgtkmm-3.0-dev libssl-dev gettext libarchive-dev
+sudo apt install build-essential cmake libgtkmm-3.0-dev libssl-dev gettext libarchive-dev -y
 wget https://launchpad.net/grub-customizer/5.1/5.1.0/+download/grub-customizer_5.1.0.tar.gz
 tar xzf grub-customizer_5.1.0.org.tar.gz
 cd grub-customizer-5.1.0/
