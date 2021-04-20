@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/snap/bin/kompozer
+Name=Kompozer
+Categories=Development;IDE;
+Icon=/snap/kompozer/current/usr/share/kompozer/icons/mozicon256.png
