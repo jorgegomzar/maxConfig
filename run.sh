@@ -1,4 +1,8 @@
 #!/bin/bash
+
+echo "Actualizando lista de repositorios"
+sudo apt update
+
 echo "Instalando genie y openshot"
 sudo apt install genie openshot -y
 echo "Instalacion finalizada"
@@ -21,7 +25,18 @@ sudo mkdir -p /etc/skel/.config/libreoffice/4/user/config/
 sudo cp ./aux/javasettings_Linux_X86_64.xml /etc/skel/.config/libreoffice/4/user/config/
 echo "\n\n"
 
+echo "Instalando grub-customizer"
+sudo apt install build-essential cmake libgtkmm-3.0-dev libssl-dev gettext libarchive-dev
+wget https://launchpad.net/grub-customizer/5.1/5.1.0/+download/grub-customizer_5.1.0.tar.gz
+tar xzf grub-customizer_5.1.0.org.tar.gz
+cd grub-customizer-5.1.0/
+cmake . && make -j8
+sudo make install
+echo "Instalado con exito"
+echo "\n\n"
 
+echo "Lanzando grub-customizer"
+grub-customizer
 
 echo "-----------------------------------"
 echo "Fin del script"
