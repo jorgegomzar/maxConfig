@@ -1,71 +1,73 @@
 #! /usr/bin/env bash
 
-RED="\e[31m"
-GREEN="\e[32m"
-BLUE="\e[1;34m"
-ENDCOLOR="\e[0m"
+BLACK=$(tput setaf 0)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+LIME_YELLOW=$(tput setaf 190)
+POWDER_BLUE=$(tput setaf 153)
+BLUE=$(tput setaf 4)
+MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6)
+WHITE=$(tput setaf 7)
+BRIGHT=$(tput bold)
+NORMAL=$(tput sgr0)
+BLINK=$(tput blink)
+REVERSE=$(tput smso)
+UNDERLINE=$(tput smul)
 
-#echo -e "${RED}This is some red text, ${ENDCOLOR}"
-#echo -e "${GREEN}And this is some green text${ENDCOLOR}"
+# printf "%40s\n" "${blue}This text is blue${normal}"
 
-echo "${BLUE}Actualizando lista de repositorios${ENDCOLOR}"
+
+printf "${BLUE}Actualizando lista de repositorios${NORMAL}"
 sudo apt update
 
-echo "${BLUE}Instalando genie y openshot${ENDCOLOR}"
+printf "${BLUE}Instalando genie y openshot${NORMAL}"
 sudo apt install genie openshot -y
 if [ $? ]
 then
-  echo "${GREEN}Instalacion finalizada con exito${ENDCOLOR}"
+  printf "${GREEN}OK${NORMAL}\n\n"
 else
-  echo "${RED}Ha ocurrido un error${ENDCOLOR}"
+  printf "${RED}Ha ocurrido un error${NORMAL}\n\n"
 fi
-echo ""
-echo ""
 
-echo "${BLUE}Instalando snap store y kompozer${ENDCOLOR}"
+printf "${BLUE}Instalando snap store y kompozer${NORMAL}"
 sudo apt install snapd -y
 sudo snap install core
 sudo snap install kompozer
 if [ $? ]
 then
-  echo "${GREEN}Instalacion finalizada con exito${ENDCOLOR}"
+  printf "${GREEN}OK${NORMAL}\n\n"
 else
-  echo "${RED}Ha ocurrido un error${ENDCOLOR}"
+  printf "${RED}Ha ocurrido un error${ENDCOLOR}\n\n"
 fi
-echo ""
-echo ""
 
-echo "Creando fichero .desktop para kompozer"
+printf "${BLUE}Creando fichero .desktop para kompozer${NORMAL}"
 sudo cp ./aux/kompozer.desktop /usr/share/applications/
-echo "kompozer deberia ser accesible desde 'Programacion'"
-echo ""
-echo ""
+printf "${GREEN}kompozer deberia ser accesible desde 'Programacion'${NORMAL}\n\n"
 
-echo "Copiando configuracion de Libreoffice base al skel"
+printf "${BLUE}Copiando configuracion de Libreoffice base al skel${NORMAL}"
 sudo mkdir -p /etc/skel/.config/libreoffice/4/user/config/
 sudo cp ./aux/javasettings_Linux_X86_64.xml /etc/skel/.config/libreoffice/4/user/config/
-echo ""
-echo ""
+printf "${GREEN}OK${NORMAL}\n\n"
 
-echo "Instalando grub-customizer"
+printf "${BLUE}Instalando grub-customizer${NORMAL}"
 sudo apt install build-essential cmake libgtkmm-3.0-dev libssl-dev gettext libarchive-dev -y
 wget https://launchpad.net/grub-customizer/5.1/5.1.0/+download/grub-customizer_5.1.0.tar.gz
-tar xzf grub-customizer_5.1.0.org.tar.gz
+tar xzf grub-customizer_5.1.0.tar.gz
 cd grub-customizer-5.1.0/
 cmake . && make -j8
 sudo make install
 if [ $? ]
 then
-  echo "${GREEN}Instalacion finalizada con exito${ENDCOLOR}"
+  printf "${GREEN}OK${NORMAL}\n\n"
 else
-  echo "${RED}Ha ocurrido un error${ENDCOLOR}"
+  printf "${RED}Ha ocurrido un error${NORMAL}\n\n"
 fi
-echo ""
-echo ""
 
-echo "Lanzando grub-customizer"
+printf "${BLUE}Lanzando grub-customizer${NORMAL}"
 grub-customizer
 
-echo "-----------------------------------"
-echo "Fin del script"
-echo "-----------------------------------"
+printf "${GREEN}-----------------------------------${NORMAL}"
+printf "${GREEN}Fin del script${NORMAL}"
+printf "${GREEN}-----------------------------------${NORMAL}"
